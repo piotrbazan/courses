@@ -1,5 +1,6 @@
 from __future__ import division, print_function
 
+from imp import reload
 import os, json
 from glob import glob
 import numpy as np
