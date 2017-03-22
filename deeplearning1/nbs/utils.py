@@ -39,10 +39,10 @@ from keras.models import Sequential, Model
 from keras.layers import Input, Embedding, Reshape, merge, LSTM, Bidirectional
 from keras.layers import TimeDistributed, Activation, SimpleRNN, GRU
 from keras.layers.core import Flatten, Dense, Dropout, Lambda
-from keras.regularizers import l2, activity_l2, l1, activity_l1
+from keras.regularizers import l2, l1
 from keras.layers.normalization import BatchNormalization
 from keras.optimizers import SGD, RMSprop, Adam
-from keras.utils.layer_utils import layer_from_config
+#from keras.utils.layer_utils import layer_from_config
 from keras.metrics import categorical_crossentropy, categorical_accuracy
 from keras.layers.convolutional import *
 from keras.preprocessing import image, sequence
@@ -99,7 +99,7 @@ def onehot(x):
 def wrap_config(layer):
     return {'class_name': layer.__class__.__name__, 'config': layer.get_config()}
 
-
+'''
 def copy_layer(layer): return layer_from_config(wrap_config(layer))
 
 
@@ -117,6 +117,7 @@ def copy_model(m):
     return res
 
 
+
 def insert_layer(model, new_layer, index):
     res = Sequential()
     for i,layer in enumerate(model.layers):
@@ -125,7 +126,7 @@ def insert_layer(model, new_layer, index):
         res.add(copied)
         copied.set_weights(layer.get_weights())
     return res
-
+'''
 
 def adjust_dropout(weights, prev_p, new_p):
     scal = (1-prev_p)/(1-new_p)
